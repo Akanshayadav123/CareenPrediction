@@ -4,7 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title>Snippet - BBBootstrap</title>
+    <title>Career Prediction App</title>
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
@@ -18,11 +18,18 @@
             margin: 0px auto;
             font-family: Raleway;
             padding: 40px;
-            border-radius: 10px
+            border-radius: 40px;
+
+            /* width: 300px; */
+            /* height: 100px; */
+            /* padding: 15px; */
+            /* background-color: coral; */
+            box-shadow: 10px 10px #bbbbbb;
+
         }
 
         #register {
-            color: #6A1B9A
+            color: #1b9a9a;
         }
 
         h1 {
@@ -39,6 +46,9 @@
             -webkit-appearance: none
         }
 
+        h6{
+            font-size: 20px;
+        }
         .tab input:focus {
             border: 1px solid #6a1b9a !important;
             outline: none
@@ -49,11 +59,10 @@
         }
 
         .tab {
-            display: none
+            display: none;
         }
-
         button {
-            background-color: #6A1B9A;
+            background-color: #1b9a9a;
             color: #ffffff;
             border: none;
             border-radius: 50%;
@@ -61,6 +70,10 @@
             font-size: 17px;
             font-family: Raleway;
             cursor: pointer
+        }
+
+        #predictBtn{
+            background-color: #1b9a9a;
         }
 
         button:hover {
@@ -159,7 +172,7 @@
 
                     <div class="tab">
                         <h6>What's your CGPA?</h6>
-                        <p><input placeholder="0-10..." oninput="this.className = ''" name="cgpa"></p>
+                        <p><input placeholder="0-10..." oninput="this.className = ''" name="cgpa" ></p>
                     </div>
                     <div class="tab">
                         <h6>Did you do webdev during college ?</h6>
@@ -238,11 +251,11 @@
                     </div>
 
 
-                    <div class="thanks-message text-center" id="text-message"> <img
+                    <!-- <div class="thanks-message text-center" id="text-message"> <img
                             src="https://i.imgur.com/O18mJ1K.png" width="100" class="mb-4">
                         <h3>Thankyou for your feedback!</h3> <span>Thanks for your valuable information. It helps us to
                             improve our services!</span>
-                    </div>
+                    </div> -->
                     <div style="overflow:auto;" id="nextprevious">
                         <div style="float:right;">
                             <button type="button" id="prevBtn" onclick="nextPrev(-1)"><i
@@ -251,7 +264,7 @@
                                     class="fa fa-angle-double-right"></i></button>
                         </div>
                     </div>
-                    <input type='submit' class="btn btn-primary" name="btn" value="Login" >
+                    <input type='submit' class="btn btn-primary" id="predictBtn" name="btn" value="Predict" >
                 </form>
             </div>
         </div>
@@ -273,10 +286,19 @@ document.addEventListener("DOMContentLoaded", function(event)
 function showTab(n) {
 var x = document.getElementsByClassName("tab");
 x[n].style.display = "block";
-if (n == 0) {
+if (n == 0 && n<18) {
 document.getElementById("prevBtn").style.display = "none";
+document.getElementById("predictBtn").style.display = "none";
 } else {
-document.getElementById("prevBtn").style.display = "inline";
+    if(n==18){
+        document.getElementById("prevBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none";
+        document.getElementById("predictBtn").style.display = "inline";        
+    }
+    else{
+        document.getElementById("prevBtn").style.display = "inline";
+    }
+
 }
 if (n == (x.length - 1)) {
 document.getElementById("nextBtn").innerHTML = '<i class="fa fa-angle-double-right"></i>';
